@@ -1,0 +1,17 @@
+export default class MovingBall {
+  constructor(p, radius, speed, ratio = 1) {
+    this.p = p
+    this.radius = radius
+    this.speed = speed
+    this.ratio = ratio
+    this.w = this.p.width / 2
+    this.h = this.p.height / 2
+  }
+
+  run() {
+    this.p.ellipse(
+        this.w + this.p.sin(this.p.frameCount * 0.0001 * this.speed) * this.w,
+        this.h + this.p.sin(this.p.frameCount * 0.0001 * this.speed * this.ratio) * this.h,
+        this.radius, this.radius)
+  }
+}
