@@ -1,9 +1,10 @@
 import p5 from 'p5'
-import MovingBall from './models/2d'
+import DrawLine from './models/DrawLine'
 
 const sketch = (p) => {
 
-  var b1;
+  var objs = [];
+  const objNum = 5;
 
   p.preload = () => {
 
@@ -12,14 +13,21 @@ const sketch = (p) => {
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight)
     p.background(0)
-    p.noStroke()
-
-    b1 = new MovingBall(p, 2, 1000, 1.2);
+    Array(objNum).fill().map((_, i) => {
+      objs.push(new DrawLine(p, [p.random(255), p.random(255), p.random(255)], 100, i+1/i+2))
+    })
   }
 
   p.draw = () => {
     //p.background(0)
-    b1.run()
+    objs.forEach((obj) => {
+      obj.run()
+    })
+  }
+
+  p.mouseClicked = () => {
+    let i = parseInt(p.random(objNum))
+    objs[i].changeColor([p.random(255), p.random(255), p.random(255)])
   }
 }
 

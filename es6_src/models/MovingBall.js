@@ -6,6 +6,7 @@ export default class MovingBall {
     this.ratio = ratio
     this.w = this.p.width / 2
     this.h = this.p.height / 2
+    this.p.noStroke()
   }
 
   run() {
